@@ -9,18 +9,17 @@ let app = express();
 let server = http.createServer(app);
 let io = socketIO(server);
 app.use(express.static(publicPath));
-
+//socket.emi=one connection, io.emit=every connection
 io.on('connection', (socket) => {//registrar eventlistener
     console.log('Client connected.');
 
-    socket.emit('newMessage',{
-        from: 'Oscar',
-        text: 'Hey!',
-        createAt: 123
-    });
-
-    socket.on('createMessage', (newMessage) => {
-        console.log('createMessage', newMessage);
+    socket.on('createMessage', (message) => {
+        console.log('createMessage', message);
+        io.emit('newMessage', {
+            from: message.from,
+            text: message.text,
+            createAt: new Date().getTime()
+        });
     });
 
 });
