@@ -13,13 +13,33 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {//registrar eventlistener
     console.log('Client connected.');
 
+    socket.emit('newMessage', {
+        from: 'Admin',
+        text: 'Welcome to the chat.',
+        createAt: new Date().getTime()
+    });
+
+    socket.broadcast.emit('newMessage', {
+        from: 'Admin',
+        text: 'An user joined to the chat',
+        createAt: new Date().getTime()
+    });    
+
+
     socket.on('createMessage', (message) => {
         console.log('createMessage', message);
+
         io.emit('newMessage', {
             from: message.from,
             text: message.text,
             createAt: new Date().getTime()
         });
+
+        // socket.broadcast.emit('newMessage', { //que todos vean el mensaje menos el usuario que lo manda
+        //     from: message.from,
+        //     text: message.text,
+        //     createAt: new Date().getTime()
+        // });
     });
 
 });
