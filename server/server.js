@@ -20,10 +20,14 @@ io.on('connection', (socket) => {//registrar eventlistener
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'An user joined to the chat.'));    
 
 
-    socket.on('createMessage', (message) => {
+    socket.on('createMessage', (message, callback) => {
         console.log('createMessage', message);
 
         io.emit('newMessage', generateMessage(message.from, message.text));
+
+        callback({//llama el 'got it' del client
+            text: 'This is from the server'
+        });
 
         // socket.broadcast.emit('newMessage', { //que todos vean el mensaje menos el usuario que lo manda
         //     from: message.from,
