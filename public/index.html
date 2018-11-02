@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/grid.css">
+    <link rel="stylesheet" type="text/css" href="/css/fonts/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+    <title>Chat app</title>
 </head>
+
 <body>
-    <p>Welcome to the chat app</p>
 
-    <ol id="messages">
+    <div class="chat-app">
+        <div class="connected-users">
+            <ul class="users-list">
+                <h3>Online users</h3>
+            </ul>
+        </div>
+        <div class="chatbox">
+            <div class="top-chat">
+                <ol id="messages">
+                </ol>
+            </div>
+            <div class="bottom-chat">
 
-    </ol>
+                    <input id="message" type="textarea" placeholder="Message" autocomplete="off"/>
+                    <div class="icons">
+                        <span id="send-location"><i class="ion-ios-location-outline icon-big"></i></span>
+                        <span id="send-message"><i class="ion-android-send icon-big"></i></span>
+                    </div>
+            </div>
+        </div>
+    </div>
 
-    <form id="message-form">
-        <input id="message" type="text" placeholder="Message"/>
-        <button>Send</button>
-    </form>
-    <button id="send-location">Send location</button>
+    <!--    <script src="/socket.io/socket.io.js"></script>-->
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/libs/jquery-3.3.1.min.js"></script>
     <script src="/js/index.js"></script>
 </body>
+
 </html>

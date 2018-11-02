@@ -19,33 +19,47 @@ socket.on('newLocationMessage', (newMessage) => {
     document.getElementById('messages').insertAdjacentHTML('beforeend', markup);
 });
 
-document.getElementById('message-form').addEventListener('submit', (e) => {
-    e.preventDefault();
 
-    socket.emit('createMessage', {
-        from: 'User',
-        text: document.getElementById('message').value
-    }, () => {
-
+['send-message', 'send-location',].forEach(e => {
+    document.getElementById(e).addEventListener('click', () => {
+        let messageBox = document.getElementById('message');
+        switch (e) {
+            case 'send-message': {
+                
+                socket.emit('createMessage', {
+                    from: 'User',
+                    text: messageBox.value
+                }, () => {
+                    messageBox.value = '';
+                });
+            }
+                break;
+            case 'send-location': {
+                if (!navigator.geolocation) {
+                    return alert('Geolocation not supported by your browser.');
+                }
+                navigator.geolocation.getCurrentPosition((position) => {
+                    socket.emit('createLocationMessage', {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    });
+                }, () => {
+                    alert('Unable to fetch location.')
+                });
+            }
+            break;
+        }
     });
 });
 
-var locationButton = document.getElementById('send-location');
-locationButton.addEventListener('click', () => {
-    if(!navigator.geolocation) {
-        return alert('Geolocation not supported by your browser.');
-    }
-    navigator.geolocation.getCurrentPosition((position) => {
-        socket.emit('createLocationMessage', {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
+document.addEventListener('keypress', (e) => {
+    let messageBox = document.getElementById('message');
+    if (event.keyCode === 13 || event.which === 13) { //which es para navegadores viejos o otros
+        socket.emit('createMessage', {
+            from: 'User',
+            text: messageBox.value
+        }, () => {
+            messageBox.value = '';
         });
-    }, () => {
-        alert('Unable to fetch location.')
-    });
-
+    }   
 });
-
-
-
-
