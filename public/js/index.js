@@ -9,13 +9,15 @@ socket.on('disconnect', () => {
 });
 
 socket.on('newMessage', (newMessage) => {
+    let formattedTime = moment(message.createdAt).format('h:mm a');
     // console.log('New message:', newMessage);
-    let markup = `<li>${newMessage.from}: ${newMessage.text}</li>`;
+    let markup = `<li>${newMessage.from} ${formattedTime}: ${newMessage.text}</li>`;
     document.getElementById('messages').insertAdjacentHTML('beforeend', markup);
 });
 
 socket.on('newLocationMessage', (newMessage) => {
-    let markup = `<li>${newMessage.from}: <a target="_blank" href="${newMessage.url}">My current location</a></li>`;
+    let formattedTime = moment(message.createdAt).format('h:mm a');
+    let markup = `<li>${newMessage.from} ${formattedTime}: <a target="_blank" href="${newMessage.url}">My current location</a></li>`;
     document.getElementById('messages').insertAdjacentHTML('beforeend', markup);
 });
 

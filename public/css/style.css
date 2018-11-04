@@ -76,12 +76,12 @@ body {
     list-style-type: none;
 }
 #messages li {
-    display: block;
-    width: 30%;
-    margin-bottom: 10px;
+    /* display: block; */
+    /* width: 30%; */
+    /* margin-bottom: 10px; */
     padding: 10px;
-    border: 1px solid;
-    border-radius: 10px;
+    /* border: 1px solid;
+    border-radius: 10px; */
 }
 .bottom-chat {
     background-color: #fff;
