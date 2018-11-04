@@ -36,10 +36,32 @@
         </div>
     </div>
 
-    <!--    <script src="/socket.io/socket.io.js"></script>-->
+    <script id="message-template" type="text/template">
+        <li>
+            <div class="message-header">
+                <h4>{{from}}</h4>
+                <span>{{createdAt}}</span>
+            </div>            
+            <p>{{text}}</p>
+        </li>
+    </script>    
+    
+    <script id="location-message-template" type="text/template">
+        <li>
+            <div class="message-header">
+                <h4>{{from}}</h4>
+                <span>{{createdAt}}</span>
+            </div>            
+            <p>
+                <a href="{{url}}" target="_blank">My current location.</a>
+            </p>
+        </li>
+    </script>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/libs/jquery-3.3.1.min.js"></script>
     <script src="/js/libs/moment.js"></script>
+    <script src="/js/libs/mustache.js"></script>
     <script src="/js/index.js"></script>
 </body>
 

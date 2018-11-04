@@ -114,6 +114,12 @@ body {
     font-size: 160%;
     cursor: pointer;
 }
-
+.message-header h4 {
+    color: black;
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 7px;
+    margin-bottom: 5px;
+}
 
 

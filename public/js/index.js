@@ -10,15 +10,32 @@ socket.on('disconnect', () => {
 
 socket.on('newMessage', (newMessage) => {
     let formattedTime = moment(message.createdAt).format('h:mm a');
-    // console.log('New message:', newMessage);
-    let markup = `<li>${newMessage.from} ${formattedTime}: ${newMessage.text}</li>`;
-    document.getElementById('messages').insertAdjacentHTML('beforeend', markup);
+    let template = document.getElementById('message-template').innerHTML;
+    let html = Mustache.render(template, {
+        text: newMessage.text,
+        from: newMessage.from,
+        createdAt: formattedTime
+    });
+    document.getElementById('messages').insertAdjacentHTML('beforeend', html);
+
+    // // console.log('New message:', newMessage);
+    // let markup = `<li>${newMessage.from} ${formattedTime}: ${newMessage.text}</li>`;
+    // document.getElementById('messages').insertAdjacentHTML('beforeend', markup);
 });
 
 socket.on('newLocationMessage', (newMessage) => {
     let formattedTime = moment(message.createdAt).format('h:mm a');
-    let markup = `<li>${newMessage.from} ${formattedTime}: <a target="_blank" href="${newMessage.url}">My current location</a></li>`;
-    document.getElementById('messages').insertAdjacentHTML('beforeend', markup);
+    let template = document.getElementById('location-message-template').innerHTML;
+    let html = Mustache.render(template, {
+        text: newMessage.text,
+        from: newMessage.from,
+        url: newMessage.url,
+        createdAt: formattedTime
+    });
+
+    document.getElementById('messages').insertAdjacentHTML('beforeend', html);
+    // let markup = `<li>${newMessage.from} ${formattedTime}: <a target="_blank" href="${newMessage.url}">My current location</a></li>`;
+    // document.getElementById('messages').insertAdjacentHTML('beforeend', markup);
 });
 
 
