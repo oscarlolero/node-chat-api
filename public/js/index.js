@@ -1,5 +1,22 @@
 let socket = io();
 
+const scrollToBottom = () => {
+    //Selectors VIDEO AUTOSCROLLING LECTURE 120
+    let messages = document.querySelector('.top-chat');
+    // let newMessage = messages.children('li:last-child');
+    // //Heights
+    // let clientHeight = messages.prop('clientHeight');
+    // let scrollTop = messages.prop('scrollTop');
+    // let scrollHeight = messages.prop('scrollHeight');
+    // let newMessageHeight = newMessage.innerHeight();
+    // let lastMessageHeight = newMessage.prev().innerHeight();
+
+    // if(clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight) {
+    //     console.log('should scroll');
+    // }
+    messages.scrollTop = messages.scrollHeight;
+}
+
 socket.on('connect', () => {
     console.log('Connected to server.');
 });
@@ -17,7 +34,7 @@ socket.on('newMessage', (newMessage) => {
         createdAt: formattedTime
     });
     document.getElementById('messages').insertAdjacentHTML('beforeend', html);
-
+    scrollToBottom();
     // // console.log('New message:', newMessage);
     // let markup = `<li>${newMessage.from} ${formattedTime}: ${newMessage.text}</li>`;
     // document.getElementById('messages').insertAdjacentHTML('beforeend', markup);
@@ -34,39 +51,42 @@ socket.on('newLocationMessage', (newMessage) => {
     });
 
     document.getElementById('messages').insertAdjacentHTML('beforeend', html);
+    scrollToBottom();
     // let markup = `<li>${newMessage.from} ${formattedTime}: <a target="_blank" href="${newMessage.url}">My current location</a></li>`;
     // document.getElementById('messages').insertAdjacentHTML('beforeend', markup);
 });
 
 
-['send-message', 'send-location',].forEach(e => {
+['send-message', 'send-location', ].forEach(e => {
     document.getElementById(e).addEventListener('click', () => {
         let messageBox = document.getElementById('message');
         switch (e) {
-            case 'send-message': {
-                
-                socket.emit('createMessage', {
-                    from: 'User',
-                    text: messageBox.value
-                }, () => {
-                    messageBox.value = '';
-                });
-            }
-                break;
-            case 'send-location': {
-                if (!navigator.geolocation) {
-                    return alert('Geolocation not supported by your browser.');
-                }
-                navigator.geolocation.getCurrentPosition((position) => {
-                    socket.emit('createLocationMessage', {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude
+            case 'send-message':
+                {
+
+                    socket.emit('createMessage', {
+                        from: 'User',
+                        text: messageBox.value
+                    }, () => {
+                        messageBox.value = '';
                     });
-                }, () => {
-                    alert('Unable to fetch location.')
-                });
-            }
-            break;
+                }
+                break;
+            case 'send-location':
+                {
+                    if (!navigator.geolocation) {
+                        return alert('Geolocation not supported by your browser.');
+                    }
+                    navigator.geolocation.getCurrentPosition((position) => {
+                        socket.emit('createLocationMessage', {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        });
+                    }, () => {
+                        alert('Unable to fetch location.')
+                    });
+                }
+                break;
         }
     });
 });
@@ -80,5 +100,5 @@ document.addEventListener('keypress', (e) => {
         }, () => {
             messageBox.value = '';
         });
-    }   
+    }
 });

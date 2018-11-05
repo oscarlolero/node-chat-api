@@ -70,6 +70,7 @@ body {
     background-color: #f5f9fd;
     border-top-right-radius: 10px;
     padding: 20px;
+    overflow-y: scroll;
 }
 
 #messages {
@@ -103,8 +104,7 @@ body {
 .icons {
     display: inline-block;
     color: #578ec9;
-    float:right;
-    margin-right: 24px;
+    margin-left: 40px;
     margin-top: 16px;
 }
 .icons span:last-child{
