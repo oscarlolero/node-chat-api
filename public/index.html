@@ -1,68 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/grid.css">
-    <link rel="stylesheet" type="text/css" href="/css/fonts/ionicons.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/animate.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <meta charset="utf-8" />
+    <title>Join chat App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
-    <title>Chat app</title>
 </head>
 
 <body>
-
-    <div class="chat-app">
-        <div class="connected-users">
-            <ul class="users-list">
-                <h3>Online users</h3>
-            </ul>
-        </div>
-        <div class="chatbox">
-            <div class="top-chat">
-                <ol id="messages">
-                </ol>
+    <div class="login-form">
+        <form action="/chat.html">
+            <div class="form-container">
+                <div class="form-field">
+                    <h3>Join a chat</h3>
+                </div>
+                <div class="form-field">
+                    <label>Name</label>
+                    <input type="text" name="name" autofocus />
+                </div>                
+                <div class="form-field">
+                    <label>Room</label>
+                    <input type="text" name="room" autofocus />
+                </div>                
+                <div class="form-field">
+                    <button>Join</button>
+                </div>
             </div>
-            <div class="bottom-chat">
-
-                    <input id="message" type="textarea" placeholder="Message" autocomplete="off" autofocus/>
-                    <div class="icons">
-                        <span id="send-location"><i class="ion-ios-location-outline icon-big"></i></span>
-                        <span id="send-message"><i class="ion-android-send icon-big"></i></span>
-                    </div>
-            </div>
-        </div>
+        </form>
     </div>
-
-    <script id="message-template" type="text/template">
-        <li>
-            <div class="message-header">
-                <h4>{{from}}</h4>
-                <span>{{createdAt}}</span>
-            </div>            
-            <p>{{text}}</p>
-        </li>
-    </script>    
-    
-    <script id="location-message-template" type="text/template">
-        <li>
-            <div class="message-header">
-                <h4>{{from}}</h4>
-                <span>{{createdAt}}</span>
-            </div>            
-            <p>
-                <a href="{{url}}" target="_blank">My current location.</a>
-            </p>
-        </li>
-    </script>
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/libs/jquery-3.3.1.min.js"></script>
-    <script src="/js/libs/moment.js"></script>
-    <script src="/js/libs/mustache.js"></script>
-    <script src="/js/index.js"></script>
 </body>
 
 </html>

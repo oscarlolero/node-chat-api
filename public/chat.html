@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/fonts/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+    <title>Chat app</title>
+</head>
+
+<body>
+
+    <div class="chat-app">
+        <div class="connected-users">
+            <ul class="users-list">
+                <h3>Online users</h3>
+            </ul>
+        </div>
+        <div class="chatbox">
+            <div class="top-chat">
+                <ol id="messages">
+                </ol>
+            </div>
+            <div class="bottom-chat">
+
+                    <input id="message" type="textarea" placeholder="Message" autocomplete="off" autofocus/>
+                    <div class="icons">
+                        <span id="send-location"><i class="ion-ios-location-outline icon-big"></i></span>
+                        <span id="send-message"><i class="ion-android-send icon-big"></i></span>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script id="message-template" type="text/template">
+        <li>
+            <div class="message-header">
+                <h4>{{from}}</h4>
+                <span>{{createdAt}}</span>
+            </div>            
+            <p>{{text}}</p>
+        </li>
+    </script>    
+    
+    <script id="location-message-template" type="text/template">
+        <li>
+            <div class="message-header">
+                <h4>{{from}}</h4>
+                <span>{{createdAt}}</span>
+            </div>            
+            <p>
+                <a href="{{url}}" target="_blank">My current location.</a>
+            </p>
+        </li>
+    </script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/libs/jquery-3.3.1.min.js"></script>
+    <script src="/js/libs/moment.js"></script>
+    <script src="/js/libs/mustache.js"></script>
+    <script src="/js/chat.js"></script>
+</body>
+
+</html>

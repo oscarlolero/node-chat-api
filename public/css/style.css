@@ -36,8 +36,59 @@ body {
     margin: auto;
     margin-top: 2.5%;
     border-radius: 6px;
-    box-shadow: 0px 0px 169px -19px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 169px -19px rgba(0, 0, 0, 0.5);
 }
+.login-form {
+    color: #fff;
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    box-shadow: 0px 0px 169px -19px rgba(0, 0, 0, 0.5);
+}
+.form-container {
+    list-style-type: none;
+    margin: 25px;
+}
+
+.form-field {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.form-field h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-field input {
+    border: 1px solid #e1e1e1;
+    width: 100%;
+    color: #2c3a4c;
+
+    padding: 10px;
+}
+
+.form-field:last-of-type {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form-field button {
+    background: #578ec9;
+    border: 0;
+    padding: 10px;
+    margin-top: 15px;
+    width: 100%;
+}
+
 /*---------------------------------------*/
 /* Left side */
 /*---------------------------------------*/
@@ -50,10 +101,11 @@ body {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+
 .users-list {
     list-style-type: none;
     padding: 15px 15px;
-    color: #DFE5EE;    
+    color: #DFE5EE;
 }
 
 /*---------------------------------------*/
@@ -76,6 +128,7 @@ body {
 #messages {
     list-style-type: none;
 }
+
 #messages li {
     /* display: block; */
     /* width: 30%; */
@@ -84,14 +137,17 @@ body {
     /* border: 1px solid;
     border-radius: 10px; */
 }
+
 .bottom-chat {
     background-color: #fff;
     height: 8%;
     border-bottom-right-radius: 10px;
 }
+
 .bottom-chat form {
     height: 100%;
 }
+
 .bottom-chat input {
     width: 84%;
     height: 100%;
@@ -107,13 +163,16 @@ body {
     margin-left: 40px;
     margin-top: 16px;
 }
-.icons span:last-child{
+
+.icons span:last-child {
     margin-left: 40px;
 }
+
 .icon-big {
     font-size: 160%;
     cursor: pointer;
 }
+
 .message-header h4 {
     color: black;
     font-weight: bold;
@@ -121,5 +180,3 @@ body {
     margin-right: 7px;
     margin-bottom: 5px;
 }
-
-
