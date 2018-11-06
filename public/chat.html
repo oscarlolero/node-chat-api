@@ -3,33 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/css/fonts/ionicons.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/fonts/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
     <title>Chat app</title>
 </head>
 
-<body>
-
-    <div class="chat-app">
+<body class="chat-app">
+    <div class="chat">
         <div class="connected-users">
-            <ul class="users-list">
-                <h3>Online users</h3>
-            </ul>
+            <h3>Online users</h3>
+            <div class="separator"></div>
+            <div id="users-list">
+            </div>
         </div>
         <div class="chatbox">
             <div class="top-chat">
                 <ol id="messages">
+
                 </ol>
             </div>
             <div class="bottom-chat">
-
-                    <input id="message" type="textarea" placeholder="Message" autocomplete="off" autofocus/>
-                    <div class="icons">
+                <div class="chat-form">
+                    <input id="message" type="textarea" placeholder="Message" autocomplete="off" autofocus />
+                    <div>
                         <span id="send-location"><i class="ion-ios-location-outline icon-big"></i></span>
                         <span id="send-message"><i class="ion-android-send icon-big"></i></span>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -42,8 +44,8 @@
             </div>            
             <p>{{text}}</p>
         </li>
-    </script>    
-    
+    </script>
+
     <script id="location-message-template" type="text/template">
         <li>
             <div class="message-header">
@@ -60,7 +62,8 @@
     <script src="/js/libs/jquery-3.3.1.min.js"></script>
     <script src="/js/libs/moment.js"></script>
     <script src="/js/libs/mustache.js"></script>
-    <script src="/js/chat.js"></script>
+    <script src="/js/libs/deparam.js"></script>
+    <script src="js/chat.js"></script>
 </body>
 
 </html>
