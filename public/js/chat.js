@@ -23,8 +23,6 @@ socket.on('connect', () => {
         if(error) {
             alert(error);
             window.location.href = '/';
-        } else {
-            console.log('No error');
         }
     });
 });
@@ -83,7 +81,6 @@ socket.on('newLocationMessage', (newMessage) => {
                 {
 
                     socket.emit('createMessage', {
-                        from: 'User',
                         text: messageBox.value
                     }, () => {
                         messageBox.value = '';
@@ -113,7 +110,6 @@ document.addEventListener('keypress', (e) => {
     let messageBox = document.getElementById('message');
     if (event.keyCode === 13 || event.which === 13) { //which es para navegadores viejos o otros
         socket.emit('createMessage', {
-            from: 'User',
             text: messageBox.value
         }, () => {
             messageBox.value = '';
